@@ -1,7 +1,8 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 60
+
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-export const revalidate = 60 // cache 60 seconds
 
 export async function GET() {
   const supabase = createClient(
@@ -11,13 +12,11 @@ export async function GET() {
 
   const { data, error } = await supabase
     .from('hunde')
-    .select('id, name, foto, rasse, alter, geschlecht, groesse, vertraeglichkeit, kastriert, kurzbeschreibung, beschreibung')
+    .select('id, name, fotos, rasse, alter, geschlecht, groesse, vertraeglichkeit, kastriert, kurzbeschreibung, beschreibung')
     .eq('status', 'verfuegbar')
     .order('erfasst_am', { ascending: false })
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
   return NextResponse.json(data, {
     headers: {
