@@ -1,5 +1,5 @@
 export const dynamic = 'force-dynamic'
-export const revalidate = 60
+export const revalidate = 0
 
 import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
@@ -21,7 +21,8 @@ export async function GET() {
   return NextResponse.json(data, {
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+      'Cache-Control': 'no-store, no-cache, must-revalidate',
+      'Pragma': 'no-cache',
     }
   })
 }
