@@ -170,7 +170,7 @@ export default function HundForm({ initial, id }: { initial?: Partial<Hund>; id?
               )}
               <input
                 ref={fileRefs[i]}
-                type="file" accept="image/*" capture="environment"
+                type="file" accept="image/*"
                 onChange={(e) => handleFoto(i, e)}
                 style={{ display: 'none' }}
               />
