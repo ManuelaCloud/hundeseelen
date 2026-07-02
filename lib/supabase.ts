@@ -8,7 +8,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export type Hund = {
   id: string
   name: string
-  foto: string | null
+  fotos: string[]
   rasse: string
   alter: string
   geschlecht: 'Männlich' | 'Weiblich'
